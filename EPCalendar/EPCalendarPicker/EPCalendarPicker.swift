@@ -140,13 +140,15 @@ public class EPCalendarPicker: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        if startYear > endYear {
-            return 0
-        }
-        
-        let numberOfMonths = 12 * (endYear - startYear) + 12
-        return numberOfMonths
+//        // #warning Incomplete implementation, return the number of sections
+//        if startYear > endYear {
+//            return 0
+//        }
+//        
+//        let numberOfMonths = 12 * (endYear - startYear) + 12
+//        return numberOfMonths
+//        
+        return 1
     }
 
 

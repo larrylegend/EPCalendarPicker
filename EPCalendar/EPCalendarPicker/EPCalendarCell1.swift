@@ -19,7 +19,7 @@ class EPCalendarCell1: UICollectionViewCell {
     }
 
     func selectedForLabelColor(color: UIColor) {
-        self.lblDay.layer.cornerRadius = self.lblDay.frame.size.width/2
+        self.lblDay.layer.cornerRadius = self.lblDay.frame.size.height/2
         self.lblDay.layer.backgroundColor = color.CGColor
         self.lblDay.textColor = UIColor.redColor()
     }
