@@ -40,7 +40,7 @@ public class EPCalendarPicker: UICollectionViewController {
         super.viewDidLoad()
         self.title = "Date Picker"
         self.collectionView?.delegate = self
-        self.collectionView?.backgroundColor = UIColor.whiteColor()
+        self.collectionView?.backgroundColor = UIColor(white: 104.0/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.tintColor = self.tintColor
         self.collectionView?.showsHorizontalScrollIndicator = false
         self.collectionView?.showsVerticalScrollIndicator = false
@@ -174,6 +174,9 @@ public class EPCalendarPicker: UICollectionViewController {
         
         if indexPath.row >= prefixDays {
             cell.isCellSelectable = true
+            
+            cell.lblDay.hidden = false
+
             let currentDate = firstDayOfThisMonth.dateByAddingDays(indexPath.row-prefixDays)
             let nextMonthFirstDay = firstDayOfThisMonth.dateByAddingDays(firstDayOfThisMonth.numberOfDaysInMonth()-1)
             
@@ -193,7 +196,10 @@ public class EPCalendarPicker: UICollectionViewController {
                 }
                 if (currentDate > nextMonthFirstDay) {
                     cell.isCellSelectable = false
-                    cell.lblDay.textColor = EPColors.LightGrayColor
+                    
+                    cell.lblDay.hidden = true
+
+//                    cell.lblDay.textColor = EPColors.LightGrayColor
                 }
                 if currentDate.isToday() {
                     cell.setTodayCellColor(todayTintColor)
@@ -203,11 +209,14 @@ public class EPCalendarPicker: UICollectionViewController {
         }
         else {
             cell.isCellSelectable = false
+            
+            cell.lblDay.hidden = true
+
             let previousDay = firstDayOfThisMonth.dateByAddingDays(-( prefixDays - indexPath.row))
             cell.currentDate = previousDay
-            cell.lblDay.text = "\(previousDay.day())"
-            cell.lblDay.textColor = EPColors.LightGrayColor
-            cell.lblDay.layer.backgroundColor = UIColor.whiteColor().CGColor
+//            cell.lblDay.text = "\(previousDay.day())"
+//            cell.lblDay.textColor = EPColors.LightGrayColor
+//            cell.lblDay.layer.backgroundColor = UIColor.clearColor().CGColor
         }
         return cell
     }
@@ -218,12 +227,12 @@ public class EPCalendarPicker: UICollectionViewController {
         
         let rect = UIScreen.mainScreen().bounds
         let screenWidth = rect.size.width - 7
-        return CGSizeMake(screenWidth/7, screenWidth/7);
+        return CGSizeMake(screenWidth/7, (screenWidth/7) * 0.65);
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets
     {
-        return UIEdgeInsetsMake(5, 0, 5, 0); //top,left,bottom,right
+        return UIEdgeInsetsMake(0, 0, 5, 0); //top,left,bottom,right
     }
     
     override public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
@@ -236,8 +245,8 @@ public class EPCalendarPicker: UICollectionViewController {
             
             header.lblTitle.text = firstDayOfMonth.monthNameFull()
             header.lblTitle.textColor = monthTitleColor
-            header.updateWeekdaysLabelColor(weekdayTintColor)
-            header.updateWeekendLabelColor(weekendTintColor)
+            header.updateWeekdaysLabelColor(UIColor(white: 155.0/255.0, alpha: 1.0))
+            header.updateWeekendLabelColor(UIColor(white: 155.0/255.0, alpha: 1.0))
             return header;
         }
 
@@ -247,6 +256,20 @@ public class EPCalendarPicker: UICollectionViewController {
     
     override public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! EPCalendarCell1
+        
+        cell.selectedForLabelColor(dateSelectionColor)
+
+        for aCell in collectionView.visibleCells() {
+            if aCell != cell {
+                if let calendarCell = aCell as? EPCalendarCell1 {
+                    calendarCell.deSelectedForLabelColor(dateSelectionColor)
+                }
+            }
+        }
+        
+        calendarDelegate?.epCalendarPicker!(self, didSelectDate: cell.currentDate)
+
+/*
         if !multiSelectEnabled {
             calendarDelegate?.epCalendarPicker!(self, didSelectDate: cell.currentDate)
             cell.selectedForLabelColor(dateSelectionColor)
@@ -279,7 +302,7 @@ public class EPCalendarPicker: UICollectionViewController {
                 }
             }
         }
-        
+     */
     }
     
     //MARK: Button Actions

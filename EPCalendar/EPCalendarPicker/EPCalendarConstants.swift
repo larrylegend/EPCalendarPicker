@@ -15,15 +15,15 @@ struct EPDefaults  {
     static let multiSelection = false
     
     //Colors
-    static let weekdayTintColor = EPColors.EmeraldColor
-    static let weekendTintColor = EPColors.PomegranateColor
-    static let dateSelectionColor = EPColors.PeterRiverColor
-    static let monthTitleColor = EPColors.PumpkinColor
-    static let todayTintColor = EPColors.AmethystColor
+    static let weekdayTintColor = UIColor.whiteColor()
+    static let weekendTintColor = UIColor.whiteColor()
+    static let dateSelectionColor = UIColor.whiteColor()
+    static let monthTitleColor = UIColor.whiteColor()
+    static let todayTintColor = UIColor.whiteColor()
     static let tintColor = EPColors.PomegranateColor
     
     //HeaderSize
-    static let headerSize = CGSizeMake(100,60)
+    static let headerSize = CGSizeMake(100,49)
     
 }
 

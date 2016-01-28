@@ -137,7 +137,7 @@ extension NSDate {
     
     func monthNameFull() -> String {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MMMM YYYY"
+        dateFormatter.dateFormat = "MMMM"
         return dateFormatter.stringFromDate(self)
     }
     

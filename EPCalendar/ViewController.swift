@@ -18,13 +18,19 @@ class ViewController: UIViewController, EPCalendarPickerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        onTouchShowMeCalendarButton(nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func onTouchShowMeCalendarButton(sender: AnyObject) {
-        let calendarPicker = EPCalendarPicker(startYear: 2015, endYear: 2017, multiSelection: true, selectedDates: [NSDate()])
+    @IBAction func onTouchShowMeCalendarButton(sender: AnyObject?) {
+        let calendarPicker = EPCalendarPicker(startYear: 2015, endYear: 2017, multiSelection: false, selectedDates: [NSDate()])
         calendarPicker.calendarDelegate = self
         let navigationController = UINavigationController(rootViewController: calendarPicker)
         self.presentViewController(navigationController, animated: true, completion: nil)   
