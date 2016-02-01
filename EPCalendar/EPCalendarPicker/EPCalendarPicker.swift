@@ -154,7 +154,7 @@ public class EPCalendarPicker: UICollectionViewController {
 
     override public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        let startDate = NSDate(year: startYear, month: 1, day: 1)
+        let startDate = NSDate(year: startYear, month: 2, day: 1)
         let firstDayOfMonth = startDate.dateByAddingMonths(section)
         let addingPrefixDaysWithMonthDyas = ( firstDayOfMonth.numberOfDaysInMonth() + firstDayOfMonth.weekday() - NSCalendar.currentCalendar().firstWeekday )
         let addingSuffixDays = addingPrefixDaysWithMonthDyas%7
@@ -170,7 +170,7 @@ public class EPCalendarPicker: UICollectionViewController {
 
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! EPCalendarCell1
         
-        let calendarStartDate = NSDate(year:startYear, month: 1, day: 1)
+        let calendarStartDate = NSDate(year:startYear, month: 2, day: 1)
         let firstDayOfThisMonth = calendarStartDate.dateByAddingMonths(indexPath.section)
         let prefixDays = ( firstDayOfThisMonth.weekday() - NSCalendar.currentCalendar().firstWeekday)
         
@@ -242,7 +242,7 @@ public class EPCalendarPicker: UICollectionViewController {
         if kind == UICollectionElementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", forIndexPath: indexPath) as! EPCalendarHeaderView
             
-            let startDate = NSDate(year: startYear, month: 1, day: 1)
+            let startDate = NSDate(year: startYear, month: 2, day: 1)
             let firstDayOfMonth = startDate.dateByAddingMonths(indexPath.section)
             
             header.lblTitle.text = firstDayOfMonth.monthNameFull()
@@ -334,10 +334,11 @@ public class EPCalendarPicker: UICollectionViewController {
     
     public func scrollToMonthForDate (date: NSDate) {
 
-        let month = date.month()
-        let year = date.year()
-        let section = ((year - startYear) * 12) + month
-        let indexPath = NSIndexPath(forRow:1, inSection: section-1)
+//        let month = date.month()
+//        let year = date.year()
+//        let section = ((year - startYear) * 12) + month
+//        let indexPath = NSIndexPath(forRow:1, inSection: section-1)
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         
         self.collectionView?.scrollToIndexpathByShowingHeader(indexPath)
     }
