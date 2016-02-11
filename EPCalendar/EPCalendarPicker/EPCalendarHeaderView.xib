@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Header" id="U6b-Vx-4bR" customClass="EPCalendarHeaderView" customModule="EPCalendar" customModuleProvider="target">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Header" id="U6b-Vx-4bR" customClass="EPCalendarHeaderView" customModule="EPCalendarPicker" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kg9-Y7-4BD">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7MJ-2a-dMN">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XtS-fH-RZb">
                             <rect key="frame" x="0.0" y="0.0" width="44" height="29"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -65,6 +70,7 @@
                         <constraint firstItem="Lt7-Ft-F77" firstAttribute="top" secondItem="Kg9-Y7-4BD" secondAttribute="top" id="6hn-2J-Py9"/>
                         <constraint firstItem="Z6P-SX-pQe" firstAttribute="height" secondItem="XtS-fH-RZb" secondAttribute="height" id="7Fh-VT-TKu"/>
                         <constraint firstAttribute="bottom" secondItem="Z6P-SX-pQe" secondAttribute="bottom" id="ANw-6a-uU8"/>
+                        <constraint firstItem="7MJ-2a-dMN" firstAttribute="leading" secondItem="Kg9-Y7-4BD" secondAttribute="leading" id="DNU-rC-AUT"/>
                         <constraint firstItem="86w-0y-ey8" firstAttribute="leading" secondItem="XtS-fH-RZb" secondAttribute="trailing" constant="2" id="DNY-Hu-M80"/>
                         <constraint firstItem="XtS-fH-RZb" firstAttribute="leading" secondItem="Kg9-Y7-4BD" secondAttribute="leading" id="DvJ-dP-Kkx"/>
                         <constraint firstItem="Z6P-SX-pQe" firstAttribute="top" secondItem="Kg9-Y7-4BD" secondAttribute="top" id="HVk-Fv-8m8"/>
@@ -76,7 +82,10 @@
                         <constraint firstAttribute="bottom" secondItem="86w-0y-ey8" secondAttribute="bottom" id="N30-pC-zua"/>
                         <constraint firstItem="xQs-3z-REx" firstAttribute="top" secondItem="Kg9-Y7-4BD" secondAttribute="top" id="Ne4-Kv-R8Y"/>
                         <constraint firstItem="ua0-Bb-Dg2" firstAttribute="top" secondItem="Kg9-Y7-4BD" secondAttribute="top" id="Vct-IQ-2Jm"/>
+                        <constraint firstItem="7MJ-2a-dMN" firstAttribute="top" secondItem="Kg9-Y7-4BD" secondAttribute="top" id="X4s-ND-eI1"/>
+                        <constraint firstItem="7MJ-2a-dMN" firstAttribute="height" secondItem="XtS-fH-RZb" secondAttribute="height" id="aJJ-0X-36T"/>
                         <constraint firstItem="l9N-Fd-tou" firstAttribute="width" secondItem="XtS-fH-RZb" secondAttribute="width" id="ahG-Li-UOb"/>
+                        <constraint firstAttribute="trailing" secondItem="7MJ-2a-dMN" secondAttribute="trailing" id="ax4-9r-wbM"/>
                         <constraint firstItem="Z6P-SX-pQe" firstAttribute="leading" secondItem="86w-0y-ey8" secondAttribute="trailing" constant="2" id="dG6-dX-xvG"/>
                         <constraint firstItem="86w-0y-ey8" firstAttribute="top" secondItem="Kg9-Y7-4BD" secondAttribute="top" id="fYA-IL-tw2"/>
                         <constraint firstItem="xQs-3z-REx" firstAttribute="leading" secondItem="l9N-Fd-tou" secondAttribute="trailing" constant="2" id="gE1-8z-voN"/>
@@ -133,8 +142,9 @@
                 <outlet property="lblTitle" destination="hne-Qq-Jmo" id="NOD-QZ-epv"/>
                 <outlet property="lblTuesday" destination="Z6P-SX-pQe" id="28l-uq-BRF"/>
                 <outlet property="lblWednesday" destination="Lt7-Ft-F77" id="og9-6F-npH"/>
+                <outlet property="weekdayLabelBackgroundView" destination="7MJ-2a-dMN" id="A6S-LU-jYL"/>
             </connections>
-            <point key="canvasLocation" x="245" y="325"/>
+            <point key="canvasLocation" x="245" y="324.5"/>
         </collectionReusableView>
     </objects>
 </document>

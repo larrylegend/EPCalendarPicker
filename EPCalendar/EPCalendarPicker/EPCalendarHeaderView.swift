@@ -18,6 +18,7 @@ class EPCalendarHeaderView: UICollectionReusableView {
     @IBOutlet weak var lblFriday: UILabel!
     @IBOutlet weak var lblSaturday: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var weekdayLabelBackgroundView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

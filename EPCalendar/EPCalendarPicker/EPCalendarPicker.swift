@@ -29,8 +29,10 @@ public class EPCalendarPicker: UICollectionViewController {
     public var weekdayTintColor: UIColor
     public var weekendTintColor: UIColor
     public var todayTintColor: UIColor
-    public var dateSelectionColor: UIColor
+    public var dateSelectionTextColor: UIColor
+    public var dateSelectionCircleColor: UIColor
     public var monthTitleColor: UIColor
+    public var weekdayLabelBackgroundViewColor: UIColor
     
     
     private(set) public var startYear: Int
@@ -115,9 +117,11 @@ public class EPCalendarPicker: UICollectionViewController {
         self.tintColor = EPDefaults.tintColor
         self.weekdayTintColor = EPDefaults.weekdayTintColor
         self.weekendTintColor = EPDefaults.weekendTintColor
-        self.dateSelectionColor = EPDefaults.dateSelectionColor
+        self.dateSelectionTextColor = EPDefaults.dateSelectionTextColor
+        self.dateSelectionCircleColor = EPDefaults.dateSelectionCircleColor
         self.monthTitleColor = EPDefaults.monthTitleColor
         self.todayTintColor = EPDefaults.todayTintColor
+        self.weekdayLabelBackgroundViewColor = EPDefaults.weekdayLabelBackgroundViewColor
 
         //Layout creation
         let layout = UICollectionViewFlowLayout()
@@ -188,7 +192,7 @@ public class EPCalendarPicker: UICollectionViewController {
             
             if arrSelectedDates.filter({ $0.isDateSameDay(currentDate)
             }).count > 0 {
-                cell.selectedForLabelColor(dateSelectionColor)
+                cell.selectedForLabelColor(dateSelectionTextColor, circleColor:  dateSelectionCircleColor)
             }
             else{
                 cell.deSelectedForLabelColor(weekdayTintColor)
@@ -247,6 +251,9 @@ public class EPCalendarPicker: UICollectionViewController {
             
             header.lblTitle.text = firstDayOfMonth.monthNameFull()
             header.lblTitle.textColor = monthTitleColor
+            
+            header.weekdayLabelBackgroundView.backgroundColor = weekdayLabelBackgroundViewColor
+            
             header.updateWeekdaysLabelColor(UIColor(white: 155.0/255.0, alpha: 1.0))
             header.updateWeekendLabelColor(UIColor(white: 155.0/255.0, alpha: 1.0))
             return header;
@@ -259,12 +266,12 @@ public class EPCalendarPicker: UICollectionViewController {
     override public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! EPCalendarCell1
         
-        cell.selectedForLabelColor(dateSelectionColor)
+        cell.selectedForLabelColor(dateSelectionTextColor, circleColor: dateSelectionCircleColor)
 
         for aCell in collectionView.visibleCells() {
             if aCell != cell {
                 if let calendarCell = aCell as? EPCalendarCell1 {
-                    calendarCell.deSelectedForLabelColor(dateSelectionColor)
+                    calendarCell.deSelectedForLabelColor(weekdayTintColor)
                 }
             }
         }

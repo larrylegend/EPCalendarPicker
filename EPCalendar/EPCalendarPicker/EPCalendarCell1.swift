@@ -18,15 +18,15 @@ class EPCalendarCell1: UICollectionViewCell {
         super.awakeFromNib()
     }
 
-    func selectedForLabelColor(color: UIColor) {
+    func selectedForLabelColor(textColor: UIColor, circleColor: UIColor) {
         self.lblDay.layer.cornerRadius = self.lblDay.frame.size.height/2
-        self.lblDay.layer.backgroundColor = color.CGColor
-        self.lblDay.textColor = UIColor.redColor()
+        self.lblDay.layer.backgroundColor = circleColor.CGColor
+        self.lblDay.textColor = textColor
     }
     
-    func deSelectedForLabelColor(color: UIColor) {
+    func deSelectedForLabelColor(textColor: UIColor) {
         self.lblDay.layer.backgroundColor = UIColor.clearColor().CGColor
-        self.lblDay.textColor = color
+        self.lblDay.textColor = textColor
     }
     
     

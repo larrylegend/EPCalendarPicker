@@ -17,10 +17,12 @@ struct EPDefaults  {
     //Colors
     static let weekdayTintColor = UIColor.whiteColor()
     static let weekendTintColor = UIColor.whiteColor()
-    static let dateSelectionColor = UIColor.whiteColor()
+    static let dateSelectionTextColor = UIColor.redColor()
+    static let dateSelectionCircleColor = UIColor.whiteColor()
     static let monthTitleColor = UIColor.whiteColor()
     static let todayTintColor = UIColor.whiteColor()
     static let tintColor = EPColors.PomegranateColor
+    static let weekdayLabelBackgroundViewColor = UIColor.clearColor()
     
     //HeaderSize
     static let headerSize = CGSizeMake(100,49)
