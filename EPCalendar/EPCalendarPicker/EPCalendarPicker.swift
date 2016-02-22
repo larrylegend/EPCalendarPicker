@@ -37,6 +37,7 @@ public class EPCalendarPicker: UICollectionViewController {
     
     private(set) public var startYear: Int
     private(set) public var endYear: Int
+    private(set) public var startDate: NSDate?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +111,7 @@ public class EPCalendarPicker: UICollectionViewController {
         
         self.startYear = startYear
         self.endYear = endYear
+        self.startDate = selectedDates?.last
         
         self.multiSelectEnabled = multiSelection
         
@@ -158,16 +160,20 @@ public class EPCalendarPicker: UICollectionViewController {
 
     override public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        let startDate = NSDate(year: startYear, month: 2, day: 1)
-        let firstDayOfMonth = startDate.dateByAddingMonths(section)
-        let addingPrefixDaysWithMonthDyas = ( firstDayOfMonth.numberOfDaysInMonth() + firstDayOfMonth.weekday() - NSCalendar.currentCalendar().firstWeekday )
-        let addingSuffixDays = addingPrefixDaysWithMonthDyas%7
-        var totalNumber  = addingPrefixDaysWithMonthDyas
-        if addingSuffixDays != 0 {
-            totalNumber = totalNumber + (7 - addingSuffixDays)
+        if let startDate = startDate {
+            let firstDayOfMonth = startDate.dateByAddingMonths(section)
+            let addingPrefixDaysWithMonthDyas = ( firstDayOfMonth.numberOfDaysInMonth() + firstDayOfMonth.weekday() - NSCalendar.currentCalendar().firstWeekday )
+            let addingSuffixDays = addingPrefixDaysWithMonthDyas%7
+            var totalNumber  = addingPrefixDaysWithMonthDyas
+            if addingSuffixDays != 0 {
+                totalNumber = totalNumber + (7 - addingSuffixDays)
+            }
+            
+            return totalNumber
         }
-        
-        return totalNumber
+        else {
+            return 0
+        }
     }
 
     override public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -246,16 +252,20 @@ public class EPCalendarPicker: UICollectionViewController {
         if kind == UICollectionElementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", forIndexPath: indexPath) as! EPCalendarHeaderView
             
-            let startDate = NSDate(year: startYear, month: 2, day: 1)
-            let firstDayOfMonth = startDate.dateByAddingMonths(indexPath.section)
+            if let startDate = startDate {
+                let firstDayOfMonth = startDate.dateByAddingMonths(indexPath.section)
+                
+                header.lblTitle.text = firstDayOfMonth.monthNameFull()
+            }
             
-            header.lblTitle.text = firstDayOfMonth.monthNameFull()
+            
             header.lblTitle.textColor = monthTitleColor
             
             header.weekdayLabelBackgroundView.backgroundColor = weekdayLabelBackgroundViewColor
             
             header.updateWeekdaysLabelColor(UIColor(white: 155.0/255.0, alpha: 1.0))
             header.updateWeekendLabelColor(UIColor(white: 155.0/255.0, alpha: 1.0))
+        
             return header;
         }
 
